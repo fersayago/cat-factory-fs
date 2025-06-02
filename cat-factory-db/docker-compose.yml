@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: cat-factory-db
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: admin123
+      MYSQL_DATABASE: catfactory
+      MYSQL_USER: catfactory
+      MYSQL_PASSWORD: admin123
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+    networks:
+      - cat-factory-network
+
+volumes:
+  mysql_data:
+
+networks:
+  cat-factory-network:
+    driver: bridge
