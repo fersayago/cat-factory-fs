@@ -1,4 +1,4 @@
-import { PrismaClient } from '../generated/prisma';
+import { Gender, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -37,7 +37,7 @@ async function main() {
       data: {
         name: 'Luna',
         age: 2,
-        gender: 'Female',
+        gender: Gender.FEMALE,
         color: 'White',
         imageUrl: 'https://example.com/luna.jpg',
         breedId: breeds[0].id, // Persian
@@ -47,7 +47,7 @@ async function main() {
       data: {
         name: 'Oliver',
         age: 3,
-        gender: 'Male',
+        gender: Gender.MALE,
         color: 'Seal Point',
         imageUrl: 'https://example.com/oliver.jpg',
         breedId: breeds[1].id, // Siamese
@@ -57,7 +57,7 @@ async function main() {
       data: {
         name: 'Max',
         age: 4,
-        gender: 'Male',
+        gender: Gender.MALE,
         color: 'Brown Tabby',
         imageUrl: 'https://example.com/max.jpg',
         breedId: breeds[2].id, // Maine Coon
