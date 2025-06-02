@@ -1,27 +1,15 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { Breed } from "@/types/cats";
+import { useGetAllBreeds } from "../_hooks/useBreeds";
+import { IBreed } from "@/types/api/breeds";
 import Image from "next/image";
-
-// Function to fetch breeds from the API
-async function getBreeds(): Promise<Breed[]> {
-  const response = await fetch("http://localhost:4001/breeds");
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-}
 
 export default function BreedsPage() {
   const {
     data: breeds,
     isLoading,
     error,
-  } = useQuery({
-    queryKey: ["breeds"],
-    queryFn: getBreeds,
-  });
+  } = useGetAllBreeds();
 
   if (isLoading) {
     return (
@@ -53,12 +41,12 @@ export default function BreedsPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {breeds?.map((breed: Breed) => (
+        {breeds?.map((breed: IBreed) => (
           <div
             key={breed.id}
             className="bg-white rounded-lg shadow-md overflow-hidden"
           >
-            {breed.imageUrl && (
+            {breed.imageUrl ? (
               <Image
                 src={breed.imageUrl}
                 alt={breed.name}
@@ -66,6 +54,8 @@ export default function BreedsPage() {
                 height={192}
                 className="w-full h-48 object-cover"
               />
+            ): (
+              <div className="w-full h-48 bg-gray-200"></div>
             )}
             <div className="p-4">
               <h2 className="text-xl font-semibold text-gray-900">
