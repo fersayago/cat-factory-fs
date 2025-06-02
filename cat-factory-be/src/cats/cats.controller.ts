@@ -38,8 +38,8 @@ export class CatsController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a cat by id' })
-  @ApiParam({ name: 'id', description: 'The id of the cat' })
+  @ApiOperation({ summary: 'Get a cat by ID' })
+  @ApiParam({ name: 'id', description: 'The ID of the cat' })
   @ApiResponse({ status: 200, description: 'Return the cat.', type: Cat })
   @ApiResponse({ status: 404, description: 'Cat not found.' })
   findOne(@Param('id') id: string) {
@@ -47,8 +47,8 @@ export class CatsController {
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update a cat' })
-  @ApiParam({ name: 'id', description: 'The id of the cat' })
+  @ApiOperation({ summary: 'Update a cat by ID' })
+  @ApiParam({ name: 'id', description: 'The ID of the cat' })
   @ApiResponse({
     status: 200,
     description: 'The cat has been successfully updated.',
@@ -60,8 +60,8 @@ export class CatsController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete a cat' })
-  @ApiParam({ name: 'id', description: 'The id of the cat' })
+  @ApiOperation({ summary: 'Delete a cat by ID' })
+  @ApiParam({ name: 'id', description: 'The ID of the cat' })
   @ApiResponse({
     status: 200,
     description: 'The cat has been successfully deleted.',
