@@ -1,4 +1,4 @@
-import { ICat, TCreateCatResponse, TGetCatByIdResponse, TGetCatsResponse } from "@/types/api/cats";
+import { TCreateCatResponse, TGetCatByIdResponse, TGetCatsResponse, TUpdateCatPayload, TCreateCatPayload } from "@/types/api/cats";
 import { fetchAPI } from "@/app/_actions/fetchInstance";
 
 export const getAllCats = async () => {
@@ -11,7 +11,12 @@ export const getCatById = async (id: string) => {
   return response;
 };
 
-export const createCat = async (cat: ICat) => {
+export const createCat = async (cat: TCreateCatPayload) => {
   const response = await fetchAPI<TCreateCatResponse>("/cats", "POST", cat);
+  return response;
+};
+
+export const updateCat = async (id: string, cat: TUpdateCatPayload) => {
+  const response = await fetchAPI<TUpdateCatPayload>(`/cats/${id}`, "PATCH", cat);
   return response;
 };
